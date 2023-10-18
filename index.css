@@ -1,0 +1,84 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: start;
+    display: flex;
+}
+
+.navbar button{
+    border-radius: 10px;
+    
+}
+
+
+
+.logo img {
+    
+    max-width: 80px;
+    height: auto;
+}
+
+.categories{
+    margin-left: 100px;
+    margin-top: 8px;
+}
+
+.categories a{
+   color: inherit;
+   text-decoration: none;
+}
+
+.categories button{
+    background-color: #777;
+    padding: 20px;
+    color: rgb(243, 253, 245);
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    padding-right: 120px;
+    
+    
+}
+
+.categories button:hover {
+    background-color: #0a9c0a;
+    box-shadow: 0 0 10px rgba(30, 172, 2, 0.8); 
+   
+}
+
+.logout{
+    
+    margin-left: 830px;
+    margin-top: 15px;
+    
+}
+
+.logout button{
+
+    background-color: #777;
+    padding-top: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    
+}
+
+.logout img {
+    max-width: 30px;
+    height: auto;
+}
+
+.logout button:hover {
+    background-color: #0a9c0a;
+    box-shadow: 0 0 10px rgba(30, 172, 2, 0.8); 
+   
+}
