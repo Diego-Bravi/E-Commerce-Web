@@ -16,19 +16,19 @@ body {
 .cart-item {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Alinea verticalmente el contenido */
+    align-items: center; 
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
 }
 
-/* Establece un ancho fijo para la columna de precios */
+
 .cart-item span:last-child {
-    width: 100px; /* Ajusta el ancho según tus necesidades */
-    text-align: right; /* Alinea el texto a la derecha para los precios */
+    width: 100px; 
+    text-align: right; 
 }
 
-/* Estilo para el botón de eliminación */
+
 .delete-button {
     background-color: red;
     color: #fff;
@@ -79,11 +79,11 @@ body {
 }
 
 #complete-button {
-    background-color: #28a745; /* Estilo verde */
+    background-color: #28a745; 
 }
 
 #complete-button:hover, #cancel-button:hover {
-    background-color: #0056b3; /* Estilo azul oscuro */
+    background-color: #0056b3; 
 }
 
 table {
@@ -96,7 +96,7 @@ table, th, td {
     border: 1px solid #ccc;
 }
 
-/* Estilo para las celdas de encabezado */
+
 th {
     background-color: #f2f2f2;
 }
@@ -106,12 +106,12 @@ th, td {
     text-align: left;
 }
 
-/* Estilo para las filas impares */
+
 tr:nth-child(odd) {
     background-color: #f9f9f9;
 }
 
-/* Estilo para el botón "Eliminar" */
+
 .delete-button {
     background-color: #ff5733;
     color: white;
