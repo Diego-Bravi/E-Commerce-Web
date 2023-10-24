@@ -142,18 +142,17 @@ body {
     color: white;
 }
 
-/* Estilo para la imagen en la tarjeta */
+
 .card img {
-    width: 300px; /* Ancho deseado */
-    height: 300px; /* Alto deseado */
+    width: 300px; 
+    height: 300px; 
 }
 
-/* Estilo para el título en la tarjeta */
+
 .card h2 {
     font-size: 16px;
 }
 
-/* Estilo para los párrafos en la tarjeta */
 .card p {
     font-size: 14px;
     border: 1px solid #ccc;

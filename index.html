@@ -53,7 +53,7 @@
                 const productDiv = event.target.closest('.card');
                 const product = {
                     title: productDiv.querySelector('h2').textContent,
-                    price: parseFloat(productDiv.querySelector('p').textContent.replace('Price: $', '')), // Ajusta el selector al formato de tu HTML
+                    price: parseFloat(productDiv.querySelector('p').textContent.replace('Price: $', '')), 
                 };
                 const quantity = parseInt(productDiv.querySelector('.quantity-input').value, 10);
                 addToCart(product, quantity);

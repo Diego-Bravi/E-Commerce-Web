@@ -64,12 +64,12 @@
             const completeButton = document.getElementById('complete-button');
             const cancelButton = document.getElementById('cancel-button');
 
-        // Recuperar la lista de productos en el carrito desde el almacenamiento local
+        
             const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
             let cartTotal = 0;
 
-        cartItemsTableBody.innerHTML = ''; // Limpia cualquier contenido previo en la tabla
+        cartItemsTableBody.innerHTML = '';
 
         cartItems.forEach(item => {
             const itemPrice = item.price;
@@ -87,16 +87,15 @@
             itemRow.querySelector('.delete-button').addEventListener('click', (event) => {
                     const indexToRemove = event.target.getAttribute('data-index');
 
-                    // Remover el producto del carrito
+               
                     cartItems.splice(indexToRemove, 1);
 
-                    // Actualizar el almacenamiento local con el carrito actualizado
+                  
                     localStorage.setItem('cart', JSON.stringify(cartItems));
 
-                    // Eliminar la fila de la tabla
+                  
                     cartItemsTableBody.removeChild(itemRow);
 
-                    // Recalcular el total
                     cartTotal = calculateCartTotal(cartItems);
                     cartTotalDiv.textContent = `Total: $${cartTotal.toFixed(2)}`;
                 });
@@ -104,7 +103,7 @@
             cartItemsTableBody.appendChild(itemRow);
         });
 
-        // Mostrar el total
+    
         cartTotalDiv.textContent = `Total: $${cartTotal.toFixed(2)}`;
 
         completeButton.addEventListener('click', () => {
@@ -113,7 +112,7 @@
                 cartItemsTableBody.innerHTML = '';
                 cartTotalDiv.textContent = `Total: $0.00`;
 
-                // Limpia los campos del formulario
+               
                 document.getElementById('name').value = '';
                 document.getElementById('address').value = '';
                 document.getElementById('city').value = '';

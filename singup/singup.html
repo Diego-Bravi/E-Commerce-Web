@@ -39,7 +39,7 @@
                 var email = document.getElementById("email").value;
                 var password = document.getElementById("password").value;
     
-                // Crea un objeto para almacenar los datos del usuario
+                
                 var user = {
                     name: name,
                     lastName: lastName,
@@ -47,13 +47,13 @@
                     password: password
                 };
     
-                // Convierte el objeto a formato JSON
+                
                 var userJSON = JSON.stringify(user);
     
-                // Almacena el objeto JSON en el Local Storage
+              
                 localStorage.setItem(email, userJSON);
     
-                // Limpia los campos de entrada después de guardar los datos
+               
                 document.getElementById("name").value = "";
                 document.getElementById("lastName").value = "";
                 document.getElementById("email").value = "";
