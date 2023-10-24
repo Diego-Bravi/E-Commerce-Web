@@ -2,12 +2,14 @@ body {
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
+    background-color: #050000;
+    color: #ffffff;
 }
 
 .navbar {
     background-color: #333;
     color: white;
-    padding: 15px;
+    padding: 10px;
     text-align: start;
     display: flex;
 }
@@ -25,10 +27,7 @@ body {
     height: auto;
 }
 
-.categories{
-    margin-left: 100px;
-    margin-top: 8px;
-}
+
 
 .categories a{
    color: inherit;
@@ -37,14 +36,14 @@ body {
 
 .categories button{
     background-color: #777;
-    padding: 20px;
+    padding: 10px;
     color: rgb(243, 253, 245);
     border: none;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
-    padding-right: 120px;
-    
+    margin-top: 20px;
+    margin-left: 10px;
     
 }
 
@@ -54,10 +53,39 @@ body {
    
 }
 
+.cart{
+    
+    margin-left: 1100px;
+    margin-top: 22px;
+    
+}
+
+.cart button{
+
+    background-color: #777;
+    padding-top: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    
+}
+
+.cart img {
+    max-width: 30px;
+    height: auto;
+}
+
+.cart button:hover {
+    background-color: #0a9c0a;
+    box-shadow: 0 0 10px rgba(30, 172, 2, 0.8); 
+   
+}
+
 .logout{
     
-    margin-left: 830px;
-    margin-top: 15px;
+    margin-left: 10px;
+    margin-top: 22px;
     
 }
 
@@ -82,3 +110,80 @@ body {
     box-shadow: 0 0 10px rgba(30, 172, 2, 0.8); 
    
 }
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+    
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+#pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+    
+}
+
+#pagination a.active {
+    background-color: #333;
+    color: white;
+}
+
+/* Estilo para la imagen en la tarjeta */
+.card img {
+    width: 300px; /* Ancho deseado */
+    height: 300px; /* Alto deseado */
+}
+
+/* Estilo para el título en la tarjeta */
+.card h2 {
+    font-size: 16px;
+}
+
+/* Estilo para los párrafos en la tarjeta */
+.card p {
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #0a9c0a;
+    box-shadow: 0 0 10px rgba(30, 172, 2, 0.8); 
+
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+}
+.add-to-cart-button {
+    background-color: #0f77bd;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    margin-left: 130px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.add-to-cart-button button:hover {
+    background-color: #0a9c0a;
+    box-shadow: 0 0 10px rgba(30, 172, 2, 0.8); 
+   
+}
+
+
+
+

@@ -17,18 +17,50 @@
         <div class="login">
            
             <div class="credentials">
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Last Name">
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input id="name" type="text" placeholder="Name">
+                <input id="lastName" type="text" placeholder="Last Name">
+                <input id="email" type="text" placeholder="Email">
+                <input id="password" type="password" placeholder="Password">
             
-                <button>Sing Up</button>
+                <button id="signupButton">Sing Up</button>
             </div>
             <div class="register">
                 <p>¿Ya tienes cuenta?</p>
                 <button><a href="/login/login.html">Volver al Login</a></button>
             </div>
         </div>
+
+
+        <script>
+            document.getElementById("signupButton").addEventListener("click", function () {
+                // Obtén los valores de los campos de entrada
+                var name = document.getElementById("name").value;
+                var lastName = document.getElementById("lastName").value;
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
     
+                // Crea un objeto para almacenar los datos del usuario
+                var user = {
+                    name: name,
+                    lastName: lastName,
+                    email: email,
+                    password: password
+                };
+    
+                // Convierte el objeto a formato JSON
+                var userJSON = JSON.stringify(user);
+    
+                // Almacena el objeto JSON en el Local Storage
+                localStorage.setItem(email, userJSON);
+    
+                // Limpia los campos de entrada después de guardar los datos
+                document.getElementById("name").value = "";
+                document.getElementById("lastName").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("password").value = "";
+    
+                alert("Registro exitoso. Los datos se han guardado en el Local Storage.");
+            });
+        </script>
 </body>
 </html>

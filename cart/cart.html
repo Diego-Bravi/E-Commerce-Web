@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="cart.css"> <!-- Puedes agregar tus estilos para el carrito aquí -->
+</head>
+<body>
+
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="/assets/logo.png">
+        </div>
+        <div class="back-home">
+            <button><a href="/index.html"><img src="/assets/back-home.png"></a></button>
+        </div>
+    </div>
+
+
+    <div id="cart">
+        
+        <div id="cart-items">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se mostrarán los productos en el carrito -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="cart-total">
+            Total: $0.00
+        </div>
+
+        <div id="shipping-info">
+            <h2>Información de Envío</h2>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name">
+            <label for="address">Dirección:</label>
+            <input type="text" id="address">
+            <label for="city">Ciudad:</label>
+            <input type="text" id="city">
+            <label for="zip">Código Postal:</label>
+            <input type="text" id="zip">
+        </div>
+
+        <button id="complete-button">Completar Compra</button>
+        <button id="cancel-button">Cancelar Compra</button>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsTableBody = document.querySelector('#cart-items tbody');
+            const cartTotalDiv = document.getElementById('cart-total');
+            const completeButton = document.getElementById('complete-button');
+            const cancelButton = document.getElementById('cancel-button');
+
+        // Recuperar la lista de productos en el carrito desde el almacenamiento local
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            let cartTotal = 0;
+
+        cartItemsTableBody.innerHTML = ''; // Limpia cualquier contenido previo en la tabla
+
+        cartItems.forEach(item => {
+            const itemPrice = item.price;
+            const itemTotal = itemPrice * item.quantity;
+            cartTotal += itemTotal;
+
+            const itemRow = document.createElement('tr');
+            itemRow.innerHTML = `
+                <td>${item.title}</td>
+                <td>${item.quantity}</td>
+                <td>$${itemPrice.toFixed(2)}</td>
+                <td><button class="delete-button"><img src="/assets/delete.png" style="width: 20px; height: 20px;"></button></td>
+            `;
+
+            itemRow.querySelector('.delete-button').addEventListener('click', (event) => {
+                    const indexToRemove = event.target.getAttribute('data-index');
+
+                    // Remover el producto del carrito
+                    cartItems.splice(indexToRemove, 1);
+
+                    // Actualizar el almacenamiento local con el carrito actualizado
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+
+                    // Eliminar la fila de la tabla
+                    cartItemsTableBody.removeChild(itemRow);
+
+                    // Recalcular el total
+                    cartTotal = calculateCartTotal(cartItems);
+                    cartTotalDiv.textContent = `Total: $${cartTotal.toFixed(2)}`;
+                });
+
+            cartItemsTableBody.appendChild(itemRow);
+        });
+
+        // Mostrar el total
+        cartTotalDiv.textContent = `Total: $${cartTotal.toFixed(2)}`;
+
+        completeButton.addEventListener('click', () => {
+            cartItems.length = 0;
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                cartItemsTableBody.innerHTML = '';
+                cartTotalDiv.textContent = `Total: $0.00`;
+
+                // Limpia los campos del formulario
+                document.getElementById('name').value = '';
+                document.getElementById('address').value = '';
+                document.getElementById('city').value = '';
+                document.getElementById('zip').value = '';
+        });
+
+        cancelButton.addEventListener('click', () => {
+
+            document.getElementById('name').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('city').value = '';
+            document.getElementById('zip').value = '';
+        });
+    });
+
+    function calculateCartTotal(items) {
+            return items.reduce((total, item) => total + item.price * item.quantity, 0);
+        }
+    </script> 
+</body>
+</html>
+
+
+
+
+
+

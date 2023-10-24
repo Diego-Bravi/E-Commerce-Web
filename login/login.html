@@ -16,16 +16,41 @@
 
         <div class="login">
             <div class="credentials">
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input id="email" type="text" placeholder="Email">
+                <input id="password" type="password" placeholder="Password">
             
-                <button>Login</button>
+                <button id="loginButton">Login</button>
             </div>
             <div class="register">
                 <p>¿No tienes cuenta?</p>
                 <button><a href="/singup/singup.html">Sing Up</a></button>
             </div>
         </div>
+
+        <script>
+            document.getElementById("loginButton").addEventListener("click", function () {
+                // Obtén los valores de los campos de entrada
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+    
+                // Obtiene los datos almacenados en el Local Storage
+                var storedUserData = localStorage.getItem(email);
+    
+                if (storedUserData) {
+                    var user = JSON.parse(storedUserData);
+    
+                    // Comprueba si la contraseña coincide
+                    if (user.password === password) {
+                        // Redirige al usuario a "index.html"
+                        window.location.href = "index.html";
+                    } else {
+                        alert("La contraseña es incorrecta. Inténtalo de nuevo.");
+                    }
+                } else {
+                    alert("El usuario no existe. Regístrate primero.");
+                }
+            });
+        </script>
     
 </body>
 </html>
