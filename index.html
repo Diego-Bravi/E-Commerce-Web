@@ -27,82 +27,72 @@
     </div>
 
     <div id="product-list"></div>
-    <div id="pagination"></div>
 
     <script>
         const productListDiv = document.getElementById('product-list');
-        const paginationDiv = document.getElementById('pagination');
-        const productsPerPage = 9;
-        let currentPage = 1;
         let currentCategory = 'all';
-
+    
         document.addEventListener('DOMContentLoaded', () => {
             const categoryButtons = document.querySelectorAll('.categories button');
-
+    
             categoryButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     event.preventDefault();
                     currentCategory = button.getAttribute('data-category');
-                    currentPage = 1;
-                    fetchAndDisplayProducts(currentPage, currentCategory);
+                    fetchAndDisplayProducts(currentCategory);
                 });
             });
-
+    
             productListDiv.addEventListener('click', (event) => {
                 if (event.target.classList.contains('add-to-cart-button')) {
-                const productDiv = event.target.closest('.card');
-                const product = {
-                    title: productDiv.querySelector('h2').textContent,
-                    price: parseFloat(productDiv.querySelector('p').textContent.replace('Price: $', '')), 
-                };
-                const quantity = parseInt(productDiv.querySelector('.quantity-input').value, 10);
-                addToCart(product, quantity);
-            }
+                    const productDiv = event.target.closest('.card');
+                    const product = {
+                        title: productDiv.querySelector('h2').textContent,
+                        price: parseFloat(productDiv.querySelector('p').textContent.replace('Price: $', '')), 
+                    };
+                    const quantity = parseInt(productDiv.querySelector('.quantity-input').value, 10);
+                    addToCart(product, quantity);
+                }
             });
-
-            fetchAndDisplayProducts(currentPage, currentCategory);
+    
+            fetchAndDisplayProducts(currentCategory);
         });
-
+    
         const addToCart = (product, quantity) => {
             let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-            // Buscar si el producto ya existe en el carrito
+    
             const existingProductIndex = cartItems.findIndex(item => item.title === product.title);
-
+    
             if (existingProductIndex !== -1) {
-                // Si el producto ya existe, actualiza la cantidad
                 cartItems[existingProductIndex].quantity += quantity;
             } else {
-                // Si el producto no existe en el carrito, agrégalo
                 cartItems.push({ ...product, quantity });
             }
-
+    
             localStorage.setItem('cart', JSON.stringify(cartItems));
         }
-
-        const fetchAndDisplayProducts = (page, category) => {
+    
+        const fetchAndDisplayProducts = (category) => {
             let apiUrl = 'https://fakestoreapi.com/products';
-
+    
             if (category !== 'all') {
                 apiUrl += `/category/${category}`;
             }
-
-            apiUrl += `?limit=${productsPerPage}&page=${page}`;
-
+    
             fetch(apiUrl)
                 .then(res => res.json())
                 .then(products => {
                     productListDiv.innerHTML = '';
-
+    
                     let rowDiv;
-
+    
                     products.forEach((product, index) => {
                         if (index % 3 === 0) {
                             rowDiv = document.createElement('div');
                             rowDiv.classList.add('row');
                             productListDiv.appendChild(rowDiv);
                         }
-
+    
                         const productDiv = document.createElement('div');
                         productDiv.classList.add('card');
                         productDiv.innerHTML = `
@@ -113,37 +103,13 @@
                             <label for="quantity">Quantity:</label>
                             <input type="number" class="quantity-input" id="quantity" value="1" min="1">
                             <button class="add-to-cart-button">
-                                <img src="assets/shopping-cart.png" alt="Add to Cart" style="width: 20px; height: 20px;">
+                                
                             </button>
                         `;
                         rowDiv.appendChild(productDiv);
                     });
-
-                    updatePagination(products.length, page, category);
                 })
                 .catch(error => console.error('Error:', error));
-        };
-
-        const updatePagination = (totalProducts, currentPage, category) => {
-            const totalPages = Math.ceil(totalProducts / productsPerPage);
-            paginationDiv.innerHTML = '';
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageLink = document.createElement('a');
-                pageLink.href = '#';
-                pageLink.textContent = i;
-                if (i === currentPage) {
-                    pageLink.classList.add('active');
-                }
-
-                pageLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    currentPage = i;
-                    fetchAndDisplayProducts(currentPage, category);
-                });
-
-                paginationDiv.appendChild(pageLink);
-            }
         };
     </script>
 </body>

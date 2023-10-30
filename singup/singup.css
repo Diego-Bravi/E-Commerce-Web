@@ -39,11 +39,12 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left: 40rem;
     margin-right: 40rem;
+    padding: 20px;
   }
   
   .credentials {
     background-color: #fff; 
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   }
@@ -71,6 +72,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     padding: 10px;
     background-color: #fff; 
+    
     
   }
   

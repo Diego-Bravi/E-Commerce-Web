@@ -39,15 +39,17 @@ body {
 }
 
 #cart-total {
-    margin-top: 20px;
+    margin-left: 10px;
+    margin-top: 30px;
     font-weight: bold;
 }
 
 #shipping-info {
-    margin-top: 20px;
+    margin-top: 40px;
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 40px;
     border-radius: 5px;
+    margin-right: 80rem;
 }
 
 #shipping-info h2 {
@@ -66,6 +68,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-top: 5px;
+   
 }
 
 #complete-button, #cancel-button {
@@ -76,6 +79,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    margin-left: 80px;
 }
 
 #complete-button {

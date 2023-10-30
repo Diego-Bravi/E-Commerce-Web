@@ -67,20 +67,17 @@ body {
     border: none;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+
     
 }
 
 .cart img {
     max-width: 30px;
     height: auto;
+    background-color: transparent;
 }
 
-.cart button:hover {
-    background-color: #0a9c0a;
-    box-shadow: 0 0 10px rgba(30, 172, 2, 0.8); 
-   
-}
+
 
 .logout{
     
