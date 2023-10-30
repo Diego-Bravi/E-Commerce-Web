@@ -126,19 +126,6 @@ body {
     margin-top: 10px;
 }
 
-#pagination a {
-    display: inline-block;
-    padding: 5px 10px;
-    text-decoration: none;
-    color: #333;
-    
-}
-
-#pagination a.active {
-    background-color: #333;
-    color: white;
-}
-
 
 .card img {
     width: 300px; 
@@ -164,21 +151,21 @@ body {
     text-align: center;
 }
 .add-to-cart-button {
+    
     background-color: #0f77bd;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     display: flex;
     margin-left: 130px;
     margin-top: 10px;
-    padding: 10px;
+    padding: 20px;
+
+    background-image: url('assets/cart.png');
+    background-size: cover; 
+    background-repeat: no-repeat; 
 }
 
-.add-to-cart-button button:hover {
-    background-color: #0a9c0a;
-    box-shadow: 0 0 10px rgba(30, 172, 2, 0.8); 
-   
-}
+
 
 
 

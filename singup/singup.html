@@ -3,64 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="singup.css">
+    <link rel="stylesheet" href="/login/login.css">
     <title>Sing Up</title>
 </head>
 <body>
 
     
-        <div class="presentation">
-            <h1>Online Shopping</h1>
-            <img src="/assets/logo.png" >
-        </div>
+    <div class="presentation">
+        <h1>Online Shopping</h1>
+        <img src="/assets/logo.png" >
+    </div>
 
-        <div class="login">
+    <div class="login">
            
-            <div class="credentials">
-                <input id="name" type="text" placeholder="Name">
-                <input id="lastName" type="text" placeholder="Last Name">
-                <input id="email" type="text" placeholder="Email">
-                <input id="password" type="password" placeholder="Password">
+        <div class="credentials">
+            <input id="name" type="text" placeholder="Name">
+            <input id="lastName" type="text" placeholder="Last Name">
+            <input id="email" type="text" placeholder="Email">
+            <input id="password" type="password" placeholder="Password">
             
-                <button id="signupButton">Sing Up</button>
-            </div>
-            <div class="register">
-                <p>¿Ya tienes cuenta?</p>
-                <button><a href="/login/login.html">Volver al Login</a></button>
-            </div>
+            <button id="signupButton">Sing Up</button>
         </div>
+        <div class="register">
+            <p>¿Ya tienes cuenta?</p>
+            <button><a href="/login/login.html">Volver al Login</a></button>
+        </div>
+    </div>
 
-
-        <script>
-            document.getElementById("signupButton").addEventListener("click", function () {
-                
-                var name = document.getElementById("name").value;
-                var lastName = document.getElementById("lastName").value;
-                var email = document.getElementById("email").value;
-                var password = document.getElementById("password").value;
+    <script src="singup.js"></script>
     
-                
-                var user = {
-                    name: name,
-                    lastName: lastName,
-                    email: email,
-                    password: password
-                };
-    
-                
-                var userJSON = JSON.stringify(user);
-    
-              
-                localStorage.setItem(email, userJSON);
-    
-               
-                document.getElementById("name").value = "";
-                document.getElementById("lastName").value = "";
-                document.getElementById("email").value = "";
-                document.getElementById("password").value = "";
-    
-                alert("Registro exitoso. Los datos se han guardado en el Local Storage.");
-            });
-        </script>
 </body>
 </html>

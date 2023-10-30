@@ -8,49 +8,25 @@
 </head>
 <body>
 
-    
-        <div class="presentation">
-            <h1>Online Shopping</h1>
-            <img src="/assets/logo.png" >
-        </div>
+    <div class="presentation">
+        <h1>Online Shopping</h1>
+        <img src="/assets/logo.png" >
+    </div>
 
-        <div class="login">
-            <div class="credentials">
-                <input id="email" type="text" placeholder="Email">
-                <input id="password" type="password" placeholder="Password">
+    <div class="login">
+        <div class="credentials">
+            <input id="email" type="text" placeholder="Email">
+            <input id="password" type="password" placeholder="Password">
             
-                <button id="loginButton">Login</button>
-            </div>
-            <div class="register">
-                <p>¿No tienes cuenta?</p>
-                <button><a href="/singup/singup.html">Sing Up</a></button>
-            </div>
+            <button id="loginButton">Login</button>
         </div>
+        <div class="register">
+            <p>¿No tienes cuenta?</p>
+            <button><a href="/singup/singup.html">Sing Up</a></button>
+        </div>
+    </div>
 
-        <script>
-            document.getElementById("loginButton").addEventListener("click", function () {
-                
-                var email = document.getElementById("email").value;
-                var password = document.getElementById("password").value;
-    
-                
-                var storedUserData = localStorage.getItem(email);
-    
-                if (storedUserData) {
-                    var user = JSON.parse(storedUserData);
-    
-                    
-                    if (user.password === password) {
-                        
-                        window.location.href = "index.html";
-                    } else {
-                        alert("La contraseña es incorrecta. Inténtalo de nuevo.");
-                    }
-                } else {
-                    alert("El usuario no existe. Regístrate primero.");
-                }
-            });
-        </script>
+    <script src="login.js"></script>
     
 </body>
 </html>
