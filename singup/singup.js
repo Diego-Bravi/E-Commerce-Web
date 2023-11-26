@@ -17,7 +17,7 @@ document.getElementById("signupButton").addEventListener("click", function () {
 
         let userJSON = JSON.stringify(user);
 
-        localStorage.setItem(email, userJSON);
+        sessionStorage.setItem(email, userJSON);
 
         document.getElementById("name").value = "";
         document.getElementById("lastName").value = "";

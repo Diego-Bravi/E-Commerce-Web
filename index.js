@@ -1,5 +1,12 @@
 const productListDiv = document.getElementById('product-list');
+const paginationContainer = document.getElementById('pagination');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
+const pageNumberSpan = document.getElementById('page-number');
+
 let currentCategory = 'all';
+let currentPage = 1;
+const productsPerPage = 3;
 
 document.addEventListener('DOMContentLoaded', () => {
     const categoryButtons = document.querySelectorAll('.categories button');
@@ -8,23 +15,33 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', (event) => {
             event.preventDefault();
             currentCategory = button.getAttribute('data-category');
-            fetchAndDisplayProducts(currentCategory);
+            currentPage = 1;
+            displayProducts(currentCategory, currentPage);
         });
     });
 
-    productListDiv.addEventListener('click', (event) => {
-        if (event.target.classList.contains('add-to-cart-button')) {
-            const productDiv = event.target.closest('.card');
-            const product = {
-                title: productDiv.querySelector('h2').textContent,
-                price: parseFloat(productDiv.querySelector('p').textContent.replace('Price: $', '')), 
-            };
-            const quantity = parseInt(productDiv.querySelector('.quantity-input').value, 10);
-            addToCart(product, quantity);
+    prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayProducts(currentCategory, currentPage);
         }
     });
 
-    fetchAndDisplayProducts(currentCategory);
+    nextButton.addEventListener('click', () => {
+        if (currentPage < 7) {
+            currentPage++;
+            displayProducts(currentCategory, currentPage);
+        }
+    });
+
+    displayProducts(currentCategory, currentPage);
+});
+
+document.getElementById("logoutButton").addEventListener("click", function () {
+    
+    const email = document.getElementById("email").value;
+    sessionStorage.removeItem(email);  
+    window.location.href = "/login/login.html";
 });
 
 const addToCart = (product, quantity) => {
@@ -39,23 +56,27 @@ const addToCart = (product, quantity) => {
     }
 
     localStorage.setItem('cart', JSON.stringify(cartItems));
-}
+};
 
-const fetchAndDisplayProducts = (category) => {
+const displayProducts = (category, page) => {
     let apiUrl = 'https://fakestoreapi.com/products';
 
     if (category !== 'all') {
         apiUrl += `/category/${category}`;
     }
 
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+
     fetch(apiUrl)
         .then(res => res.json())
         .then(products => {
-            productListDiv.innerHTML = '';
+            const paginatedProducts = products.slice(startIndex, endIndex);
 
+            productListDiv.innerHTML = '';
             let rowDiv;
 
-            products.forEach((product, index) => {
+            paginatedProducts.forEach((product, index) => {
                 if (index % 3 === 0) {
                     rowDiv = document.createElement('div');
                     rowDiv.classList.add('row');
@@ -74,7 +95,24 @@ const fetchAndDisplayProducts = (category) => {
                     <button class="add-to-cart-button"></button>
                 `;
                 rowDiv.appendChild(productDiv);
+
+                
+                const addToCartButton = productDiv.querySelector('.add-to-cart-button');
+                addToCartButton.addEventListener('click', () => {
+                    const quantityInput = productDiv.querySelector('.quantity-input');
+                    const quantity = parseInt(quantityInput.value, 10);
+                    addToCart(product, quantity);
+                });
             });
+
+            updatePagination();
         })
         .catch(error => console.error('Error:', error));
+};
+
+
+const updatePagination = () => {
+    pageNumberSpan.textContent = currentPage;
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === 7;
 };

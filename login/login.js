@@ -5,7 +5,8 @@ document.getElementById("loginButton").addEventListener("click", function () {
     if (email === "" || password === "") {
         alert("Por favor, complete los campos de correo electrónico y contraseña.");
     } else {
-        const storedUserData = localStorage.getItem(email);
+       
+        const storedUserData = sessionStorage.getItem(email);
 
         if (storedUserData) {
             let user = JSON.parse(storedUserData);
@@ -15,6 +16,7 @@ document.getElementById("loginButton").addEventListener("click", function () {
             } else {
                 alert("La contraseña es incorrecta. Inténtalo de nuevo.");
             }
+
         } else {
             alert("El usuario no existe. Regístrate primero.");
         }

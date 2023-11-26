@@ -19,8 +19,6 @@ body {
     
 }
 
-
-
 .logo img {
     
     max-width: 80px;
@@ -165,7 +163,29 @@ body {
     background-repeat: no-repeat; 
 }
 
+#pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; 
+}
 
+#prev-button,
+#next-button {
+    
+    border: none;
+    cursor: pointer;
+}
+
+#prev-button img,
+#next-button img {
+    width: 20px;
+    height: auto; 
+}
+
+#page-number {
+    margin: 0 10px; 
+}
 
 
 
