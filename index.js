@@ -37,12 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     displayProducts(currentCategory, currentPage);
 });
 
-document.getElementById("logoutButton").addEventListener("click", function () {
-    
-    const email = document.getElementById("email").value;
-    sessionStorage.removeItem(email);  
-    window.location.href = "/login/login.html";
-});
 
 const addToCart = (product, quantity) => {
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
