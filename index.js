@@ -7,11 +7,10 @@ const pageNumberSpan = document.getElementById('page-number');
 let currentCategory = 'all';
 let currentPage = 1;
 const productsPerPage = 3;
+let totalProducts = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     const categoryButtons = document.querySelectorAll('.categories button');
-
-   
 
     categoryButtons.forEach(button => {
         button.addEventListener('click', (event) => {
@@ -30,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     nextButton.addEventListener('click', () => {
-        if (currentPage < 7) {
+        const totalPages = Math.ceil(totalProducts / productsPerPage);
+        if (currentPage < totalPages) {
             currentPage++;
             displayProducts(currentCategory, currentPage);
         }
@@ -61,12 +61,14 @@ const displayProducts = (category, page) => {
         apiUrl += `/category/${category}`;
     }
 
-    const startIndex = (page - 1) * productsPerPage;
-    const endIndex = startIndex + productsPerPage;
-
     fetch(apiUrl)
         .then(res => res.json())
         .then(products => {
+            totalProducts = products.length;
+
+            const startIndex = (page - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+
             const paginatedProducts = products.slice(startIndex, endIndex);
 
             productListDiv.innerHTML = '';
@@ -92,7 +94,6 @@ const displayProducts = (category, page) => {
                 `;
                 rowDiv.appendChild(productDiv);
 
-                
                 const addToCartButton = productDiv.querySelector('.add-to-cart-button');
                 addToCartButton.addEventListener('click', () => {
                     const quantityInput = productDiv.querySelector('.quantity-input');
@@ -106,9 +107,9 @@ const displayProducts = (category, page) => {
         .catch(error => console.error('Error:', error));
 };
 
-
 const updatePagination = () => {
+    const totalPages = Math.ceil(totalProducts / productsPerPage);
     pageNumberSpan.textContent = currentPage;
     prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage === 7;
+    nextButton.disabled = currentPage === totalPages;
 };

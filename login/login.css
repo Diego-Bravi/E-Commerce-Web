@@ -3,10 +3,10 @@ body {
   margin: 0;
   padding: 0;
   background-image: url('/assets/background.jpg');
-  background-size: 100% 100%;  /* Ajusta el tamaño al 100% de la altura y anchura */
+  background-size: 100% 100%;  
   background-repeat: no-repeat;
   background-position: center center;
-  height: 100vh;  /* Asegura que el cuerpo ocupe al menos la altura de la ventana */
+  height: 100vh;  
 }
 
 .login {
@@ -79,6 +79,7 @@ button {
 @media screen and (min-width: 768px) {
   .login {
       max-width: 600px;
+      
   }
   
   
