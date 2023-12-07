@@ -15,17 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemPrice = item.price;
         const itemTotal = itemPrice * item.quantity;
         cartTotal += itemTotal;
-
+    
         const itemRow = document.createElement('tr');
         itemRow.innerHTML = `
-            <td>${item.title}</td>
+            <td><img src="${item.image}" alt="${item.title}" style="width: 50px; height: auto;"></td>
             <td>${item.quantity}</td>
             <td>$${itemPrice.toFixed(2)}</td>
             <td><button class="delete-button" data-index="${index}"><img src="/assets/delete.png" style="width: 20px; height: 20px;"></button></td>
         `;
-
+    
         itemRow.querySelector('.delete-button').addEventListener('click', deleteClick);
-
+    
         cartItemsTableBody.appendChild(itemRow);
     }
 
