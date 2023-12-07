@@ -11,6 +11,8 @@ const productsPerPage = 3;
 document.addEventListener('DOMContentLoaded', () => {
     const categoryButtons = document.querySelectorAll('.categories button');
 
+   
+
     categoryButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             event.preventDefault();
